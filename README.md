@@ -11,7 +11,9 @@ bundle install
 ## Running Locally
 
 To run the script locally, make sure you have Ruby 3.2.1 installed, then run:
+```
 ruby exchange_rates.rb <date>
+```
 Replace `<date>` with the date for which you want to fetch exchange rates.
 
 The script will print the exchange rates for the specified date to the console.
@@ -23,13 +25,14 @@ To run the script inside a Docker container, make sure you have Docker and Docke
 1. Clone this repository to your local machine.
 2. Navigate to the root directory of the project.
 3. Build the Docker image by running:
-   
+```
     docker-compose build
-
+```
 4. Start the container by running and the script will run inside the container and output the exchange rates for the current date.
-   
+```
     docker-compose up
-
+```
 5. [OPTIONAL] The script will run inside the container and output the exchange rates for the selected date
-    
+```
     docker-compose run app ./exchange_rates.rb <date>
+```
