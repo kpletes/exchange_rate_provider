@@ -3,12 +3,14 @@
 require './lib/exchange_rate_provider'
 require './lib/exchange_rate_parser'
 require './lib/exchange_rate_presenter'
+require './lib/exchange_rate_date_validator'
 
 class ExchangeRateFetcher
   DAILY_RATES_URL = 'https://www.cnb.cz/en/financial-markets/foreign-exchange-market/central-bank-exchange-rate-fixing/central-bank-exchange-rate-fixing/daily.txt'
 
   def initialize(date = nil)
-    @date = date
+    @date = ExchangeRateDateValidator.validate(date)
+    puts "Date is #{@date}"
   end
 
   def fetch
@@ -20,7 +22,7 @@ class ExchangeRateFetcher
 
   def build_url
     url = DAILY_RATES_URL
-    url += "?date=#{@date}" if @date
+    url += "?date=#{@date.strftime('%d.%m.%Y')}" if @date
     url
   end
 
